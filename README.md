@@ -1,6 +1,6 @@
 # DCSP: Discovering Class Specific Pixels for Weakly Supervised Semantic Segmentation
 
-This is the implementation of the DCSP paper in tensorflow(arxiv link). The network architecture is inspired from the DeepLab-v2 model, and the [tensorflow reimplementation](https://github.com/DrSleep/tensorflow-deeplab-resnet) of the DeepLab-v2 is used. 
+This is the implementation of the [DCSP paper](arxiv link) in tensorflow. The network architecture is inspired from the DeepLab-v2 model, and the [tensorflow reimplementation](https://github.com/DrSleep/tensorflow-deeplab-resnet) of the DeepLab-v2 is used. 
 
 When using this code, please cite our paper:
 
@@ -13,7 +13,7 @@ When using this code, please cite our paper:
 
 ## Model Description
 
-Please refer to our paper (arxiv link) for the full details of our model. The attention and segmentation models are based on DeepLab-v2 with an additional convolutional layer to obtain fully convolutional attention maps. For saliency cues, we used [DHSNet](https://drive.google.com/file/d/0B1sbejbIJIW3RlJJY1NNNkFydEU/view) as an off-the-shelf saliency detector. One can use saliency detector of one's choice. Please cite the respective work when using their code. We use our #Hierarchical Saliency# algorithm to improve the saliency maps (refer to our paper for details). The code in this repository assumes that saliency maps have already been obtained off-line prior to running the scripts in this repository. 
+Please refer to our [paper](arxiv link) for the full details of our model. The attention and segmentation models are based on DeepLab-v2 with an additional convolutional layer to obtain fully convolutional attention maps. For saliency cues, we used [DHSNet](https://drive.google.com/file/d/0B1sbejbIJIW3RlJJY1NNNkFydEU/view) as an off-the-shelf saliency detector. One can use saliency detector of one's choice. Please cite the respective work when using their code. We use our Hierarchical Saliency algorithm to improve the saliency maps (refer to our paper for details). The code in this repository assumes that saliency maps have already been obtained off-line prior to running the scripts in this repository. 
 
 
 ## Requirements
@@ -32,9 +32,9 @@ pip install -user -r requirements.txt
 
 ## Initialization Models
 
-The initialization models are provided [here](drive_link). The model uses the ImageNet initialization of ResNet-101, except for the last `fc*` layers where the weights are initialized by the gaussian with `0` mean and `0.01` standard deviation, and biases with `0`. 
+The initialization and pretrained models are provided [here](https://www.dropbox.com/sh/po12l7zrrf08l4g/AADOsCh0Gb-mJ1fnwSbE7jIBa?dl=0). The model uses the ImageNet initialization of ResNet-101, except for the last `fc*` layers where the weights are initialized by the gaussian with `0` mean and `0.01` standard deviation, and biases with `0`. 
 
-One can use the initialization model provided [above](drive_link) or can convert the vanilla `.caffemodel` of ResNet-101. To convert the initialization model from the `caffemodel`, download the appropriate `.caffemodel` file, and install [Caffe to TensorFlow](https://github.com/ethereon/caffe-tensorflow) dependencies. The Caffe model definition is provided in `misc/deploy.prototxt`. 
+One can use the initialization model provided [above](https://www.dropbox.com/sh/po12l7zrrf08l4g/AADOsCh0Gb-mJ1fnwSbE7jIBa?dl=0) or can convert the vanilla `.caffemodel` of ResNet-101. To convert the initialization model from the `caffemodel`, download the appropriate `.caffemodel` file, and install [Caffe to TensorFlow](https://github.com/ethereon/caffe-tensorflow) dependencies. The Caffe model definition is provided in `misc/deploy.prototxt`. 
 To extract weights from `.caffemodel`, run the following:
 ```bash
 python convert.py /path/to/deploy/prototxt --caffemodel /path/to/caffemodel --data-output-path /where/to/save/numpy/weights
@@ -46,7 +46,9 @@ python npy2ckpt.py /where/to/save/numpy/weights --save-dir=/where/to/save/ckpt/w
 
 ## Dataset and Training
 
-To train the network, one can use the augmented PASCAL VOC 2012 dataset with `10582` images for training and `1449` images for validation. We do not make use of pixel-level annotations of the training/ validation sets and only use the image tags. Prepare the dataset by extract the JPEG images and image tags from the PASCAL_VOC2012 dataset in a directory. Please consult the list `dataset/train_labels_only.txt` in the repository for the names of the directories and corresponding files. Save the saliency masks (in the `Saliency` folder) at the same level where JPEGImages and ImageTags are stored. Please see the list `dataset/train_attn_sal_labels.txt` in the repository for reference. 
+To train the network, one can use the augmented PASCAL VOC 2012 dataset with `10582` images for training and `1449` images for validation. We do not make use of pixel-level annotations of the training/ validation sets and only use the image tags. 
+
+Prepare the dataset by extracting the JPEG images and image tags from the PASCAL_VOC2012 dataset in a directory. Please consult the list `dataset/train_labels_only.txt` in the repository for the names of the directories and corresponding files. Save the saliency masks (in the `Saliency` folder) at the same level where JPEGImages and ImageTags are stored. Please see the list `dataset/train_attn_sal_labels.txt` in the repository for reference. 
 
 Once the files are extracted as per the lists described above, one can start training the dcsp model. `dcsp.py` is the main script which trains both the attention and segmentation model. To train the model, run the `dcsp.py` script with the appropriate command-line options. To see the documentation on each of the training settings, run the `dcsp.py` script with the `--help` flag:
 ```bash
