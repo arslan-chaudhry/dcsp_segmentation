@@ -7,7 +7,7 @@ When using this code, please cite our paper:
     @article{chaudhry_dcsp_2017,
       title={Discovering Class-Specific Pixels for Weakly-Supervised Semantic Segmentation},
       author={Arslan Chaudhry and Puneet K. Dokania and Philip H. S. Torr},
-      booktitle={British Machine Vision Conference (BMVC)},
+      journal={British Machine Vision Conference (BMVC)},
       year={2017}
     }
 
