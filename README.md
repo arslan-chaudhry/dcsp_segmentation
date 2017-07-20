@@ -1,6 +1,6 @@
 # DCSP: Discovering Class Specific Pixels for Weakly Supervised Semantic Segmentation
 
-This is the implementation of the [DCSP paper](arxiv link) in tensorflow. The network architecture is inspired from the DeepLab-v2 model, and the [tensorflow reimplementation](https://github.com/DrSleep/tensorflow-deeplab-resnet) of the DeepLab-v2 is used. 
+This is the implementation of the [DCSP paper](https://arxiv.org/abs/1707.05821) in tensorflow. The network architecture is inspired from the DeepLab-v2 model, and the [tensorflow reimplementation](https://github.com/DrSleep/tensorflow-deeplab-resnet) of the DeepLab-v2 is used. 
 
 When using this code, please cite our paper:
 
@@ -13,7 +13,7 @@ When using this code, please cite our paper:
 
 ## Model Description
 
-Please refer to our [paper](arxiv link) for the full details of our model. The attention and segmentation models are based on DeepLab-v2 with an additional convolutional layer to obtain fully convolutional attention maps. For saliency cues, we used [DHSNet](https://drive.google.com/file/d/0B1sbejbIJIW3RlJJY1NNNkFydEU/view) as an off-the-shelf saliency detector. One can use saliency detector of one's choice. Please cite the respective work when using their code. We use our Hierarchical Saliency algorithm to improve the saliency maps (refer to our paper for details). The code in this repository assumes that saliency maps have already been obtained off-line prior to running the scripts in this repository. 
+Please refer to our [paper](https://arxiv.org/abs/1707.05821) for the full details of our model. The attention and segmentation models are based on DeepLab-v2 with an additional convolutional layer to obtain fully convolutional attention maps. For saliency cues, we used [DHSNet](https://drive.google.com/file/d/0B1sbejbIJIW3RlJJY1NNNkFydEU/view) as an off-the-shelf saliency detector. One can use saliency detector of one's choice. Please cite the respective work when using their code. We use our Hierarchical Saliency algorithm to improve the saliency maps (refer to our paper for details). The code in this repository assumes that saliency maps have already been obtained off-line prior to running the scripts in this repository. 
 
 
 ## Requirements
