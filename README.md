@@ -48,7 +48,7 @@ python npy2ckpt.py /where/to/save/numpy/weights --save-dir=/where/to/save/ckpt/w
 
 To train the network, one can use the augmented PASCAL VOC 2012 dataset with `10582` images for training and `1449` images for validation. We do not make use of pixel-level annotations of the training/ validation sets and only use the image tags. 
 
-Prepare the dataset by extracting the JPEG images and image tags from the PASCAL_VOC2012 dataset in a directory. Please consult the list `dataset/train_labels_only.txt` in the repository for the names of the directories and corresponding files. Save the saliency masks (in the `Saliency` folder) at the same level where JPEGImages and ImageTags are stored. Please see the list `dataset/train_attn_sal_labels.txt` in the repository for reference. 
+Prepare the dataset by extracting the JPEG images and image tags from the PASCAL_VOC2012 dataset in a directory. Please consult the list `dataset/train_labels_only.txt` in the repository for the names of the directories and corresponding files. For ease of use, extracted image tags are provided [here](https://www.dropbox.com/sh/po12l7zrrf08l4g/AADOsCh0Gb-mJ1fnwSbE7jIBa?dl=0). Save the saliency masks (in the `Saliency` folder) at the same level where JPEGImages and ImageTags are stored. Please see the list `dataset/train_attn_sal_labels.txt` in the repository for reference. 
 
 Once the files are extracted as per the lists described above, one can start training the dcsp model. `dcsp.py` is the main script which trains both the attention and segmentation model. To train the model, run the `dcsp.py` script with the appropriate command-line options. To see the documentation on each of the training settings, run the `dcsp.py` script with the `--help` flag:
 ```bash
